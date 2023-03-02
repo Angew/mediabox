@@ -1,5 +1,7 @@
+import os.path
 import sys
 import tkinter as tk
+import tkinter.filedialog
 from tkinter import ttk
 
 import pyperclip as clip
@@ -8,6 +10,11 @@ import yt_dlp as yt
 
 
 class MainWindow(tk.Tk):
+    default_format_extensions = {
+        "audio": "mp3",
+        "video": "mp4"
+    }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -59,9 +66,9 @@ class MainWindow(tk.Tk):
         frm_format = ttk.Frame(frm_output)
         frm_format.grid(column=1, row=1, sticky=tk.W)
 
-        self.rb_video = ttk.Radiobutton(frm_format, text="Video", variable=self.format, value="video")
+        self.rb_video = ttk.Radiobutton(frm_format, text="Video", variable=self.format, value="video", command=self.change_format)
         self.rb_video.grid(column=0, row=0, pady=pad)
-        self.rb_audio = ttk.Radiobutton(frm_format, text="Audio", variable=self.format, value="audio")
+        self.rb_audio = ttk.Radiobutton(frm_format, text="Audio", variable=self.format, value="audio", command=self.change_format)
         self.rb_audio.grid(column=1, row=0, pady=pad)
 
         frm_run = ttk.Frame(frm_main)
@@ -89,7 +96,21 @@ class MainWindow(tk.Tk):
             self.url.set(pasted)
 
     def browse_file(self):
-        pass
+        ext = self.default_format_extensions[self.format.get()]
+        file = tk.filedialog.asksaveasfilename(defaultextension=ext, filetypes=[(f".{ext} Files", ext)])
+        if not file:
+            return
+        self.file.set(file)
+        self.set_state_idle()
+
+    def change_format(self):
+        file = self.file.get()
+        if file:
+            d, f = os.path.split(file)
+            f = os.path.splitext(f)[0]
+            e = self.default_format_extensions[self.format.get()]
+            self.file.set(os.path.join(d, f"{f}.{e}"))
+        self.set_state_idle()
 
     def run(self):
         pass
