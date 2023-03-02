@@ -1,2 +1,4 @@
 http://tkdocs.com/tutorial/index.html
 https://realpython.com/python-gui-tkinter/
+
+https://github.com/yt-dlp/yt-dlp#embedding-yt-dlp
