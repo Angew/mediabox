@@ -121,7 +121,23 @@ class MainWindow(tk.Tk):
         self.file.set(file)
 
     def run(self):
-        pass
+        ydl_opts = {
+            "keepvideo": True,
+            "progress_hooks": [self.on_download_progress],
+            "postprocessor_hooks": [self.on_postprocessing_progress]
+        }
+        if self.format.get() == "audio":
+            postprocessor = {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": self.default_format_extensions[self.format.get()]
+            }
+        else:
+            postprocessor = {
+                "key": "FFmpegExtractAudio",
+                "preferredcodec": self.default_format_extensions[self.format.get()]
+            }
+        ydl_opts["postprocessors"] = [postprocessor]
+        # ToDo continue here to actually run yt_dlp
 
 
 
