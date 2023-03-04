@@ -73,7 +73,7 @@ class MainWindow(tk.Tk):
         self.state = tk.StringVar()
         self.progress = tk.DoubleVar()
 
-        self.title = "Media downloader"
+        self.title("Media downloader")
 
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
