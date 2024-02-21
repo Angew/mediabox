@@ -117,17 +117,17 @@ class MainWindow(tk.Tk):
         self.rb_audio.grid(column=1, row=0, pady=pad)
 
         frm_run = ttk.Frame(frm_main)
-        frm_run.columnconfigure(2, weight=1)
+        frm_run.columnconfigure(1, weight=1)
         frm_run.grid(column=0, row=2, sticky="nwe")
 
         self.btn_run = ttk.Button(frm_run, text="\N{BLACK MEDIUM RIGHT-POINTING TRIANGLE}", command=self.run)
-        self.btn_run.grid(column=0, row=0, padx=pad, pady=pad, sticky=tk.W)
+        self.btn_run.grid(column=2, row=0, padx=pad, pady=pad, sticky=tk.W)
 
         self.lbl_state = ttk.Label(frm_run, textvariable=self.state)
-        self.lbl_state.grid(column=1, row=0, padx=pad, pady=pad)
+        self.lbl_state.grid(column=0, row=0, padx=pad, pady=pad)
 
         self.prg_run = ttk.Progressbar(frm_run, orient=tk.HORIZONTAL, mode="determinate", variable=self.progress)
-        self.prg_run.grid(column=2, row=0, sticky=(tk.W, tk.E), padx=pad, pady=pad)
+        self.prg_run.grid(column=1, row=0, sticky=(tk.W, tk.E), padx=pad, pady=pad)
 
         self.config_changed()
 
