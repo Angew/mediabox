@@ -1,0 +1,10 @@
+Good tutorial videos:
+https://www.youtube.com/playlist?list=PLJse9iV6Reqiy8wP0rXTgFQkMNutRMN0j
+
+Complex filtering:
+-filter_complex
+[input][names]filter[output][names]
+
+cmdline option order matters
+Input seeking: -ss -i
+Output seeking: -i -ss
